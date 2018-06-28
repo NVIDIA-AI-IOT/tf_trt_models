@@ -25,7 +25,13 @@ Setup
 -----
 
 1. Flash your Jetson TX2 with JetPack 3.2 (including TensorRT).
-2. Install TensorFlow 1.7+ (with TensorRT support).  Download the [pre-built pip wheel](https://devtalk.nvidia.com/default/topic/1031300/jetson-tx2/tensorflow-1-8-wheel-with-jetpack-3-2-/) and install using pip.
+2. Install miscellaneous dependencies on Jetson
+
+   ```
+   sudo apt-get install python-pip python-matplotlib python-pil
+   ```
+   
+3. Install TensorFlow 1.7+ (with TensorRT support).  Download the [pre-built pip wheel](https://devtalk.nvidia.com/default/topic/1031300/jetson-tx2/tensorflow-1-8-wheel-with-jetpack-3-2-/) and install using pip.
 
     ```
     sudo pip install tensorflow-1.8.0-cp27-cp27mu-linux_aarch64.whl
@@ -38,14 +44,14 @@ Setup
     ```
 
     
-3. Clone this repository
+4. Clone this repository
 
     ```
     git clone --recursive https://github.com/NVIDIA-Jetson/tf_trt_models.git
     cd tf_trt_models
     ```
 
-4. Run the installation script
+5. Run the installation script
 
     ```
     ./install.sh
