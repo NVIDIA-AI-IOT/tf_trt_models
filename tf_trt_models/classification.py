@@ -10,7 +10,7 @@ import nets.resnet_v2
 import nets.vgg
 
 import os
-import urllib
+import subprocess
 import tarfile
 
 import tensorflow as tf
@@ -157,14 +157,14 @@ def download_classification_checkpoint(model, output_dir='.'):
 
     modeltar_path = os.path.join(output_dir, os.path.basename(NETS[model].url))
     if not os.path.isfile(modeltar_path):
-      urllib.urlretrieve(NETS[model].url, modeltar_path);
+        subprocess.call(['wget', '--no-check-certificate', NETS[model].url, '-O', modeltar_path])
 
     tar_file = tarfile.open(modeltar_path)
     for file in tar_file.getmembers():
-      file_name = os.path.basename(file.name)
-      if '.ckpt' in file_name:
-        file.name = file_name
-        tar_file.extract(file, modeldir_path)
+        file_name = os.path.basename(file.name)
+        if '.ckpt' in file_name:
+            file.name = file_name
+            tar_file.extract(file, modeldir_path)
 
     checkpoint_path = os.path.join(modeldir_path, file_name)
 
