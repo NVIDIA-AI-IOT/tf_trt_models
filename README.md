@@ -87,6 +87,10 @@ Image Classification
 | mobilenet_v1_0p5_160 | 160x160 | 4.47ms | 8.69ms |
 | mobilenet_v1_1p0_224 | 224x224 | 11.1ms | 17.3ms |
 
+**TF** - Original TensorFlow graph (FP32)
+
+**TF-TRT** - TensorRT optimized graph (FP16)
+
 The above benchmark timings were gathered after placing the Jetson TX2 in MAX-N
 mode.  To do this, run the following commands in a terminal:
 
@@ -94,7 +98,6 @@ mode.  To do this, run the following commands in a terminal:
 sudo nvpmodel -m 0
 sudo ~/jetson_clocks.sh
 ```
-
 
 <a name="ic_download"></a>
 ### Download pretrained model
@@ -162,6 +165,10 @@ Object Detection
 |:------|:----------:|-----------:|-------:|
 | ssd_mobilenet_v1_coco | 300x300 | 50.5ms | 72.9ms |
 | ssd_inception_v2_coco | 300x300 | 54.4ms | 132ms  |
+
+**TF** - Original TensorFlow graph (FP32)
+
+**TF-TRT** - TensorRT optimized graph (FP16)
 
 The above benchmark timings were gathered after placing the Jetson TX2 in MAX-N
 mode.  To do this, run the following commands in a terminal:
