@@ -4,8 +4,8 @@ setup(
     name='tf_trt_models',
     version='0.0',
     description='TensorFlow models accelerated with NVIDIA TensorRT',
-    author='John Welsh',
-    author_email='jwelsh@nvidia.com',
-    url='...',
+    author='',
+    author_email='',
+    url='https://github.com/NVIDIA-Jetson/tf_trt_models',
     packages=find_packages(),
 )
