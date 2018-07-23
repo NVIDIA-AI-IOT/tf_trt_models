@@ -158,15 +158,10 @@ def download_classification_checkpoint(model, output_dir='.'):
     modeltar_path = os.path.join(output_dir, os.path.basename(NETS[model].url))
     if not os.path.isfile(modeltar_path):
         subprocess.call(['wget', '--no-check-certificate', NETS[model].url, '-O', modeltar_path])
-
-    tar_file = tarfile.open(modeltar_path)
-    for file in tar_file.getmembers():
-        file_name = os.path.basename(file.name)
-        if '.ckpt' in file_name:
-            file.name = file_name
-            tar_file.extract(file, modeldir_path)
-
-    checkpoint_path = os.path.join(modeldir_path, file_name)
+     
+    checkpoint_path = os.path.join(modeldir_path, NETS[model].checkpoint_name)
+    if not os.path.isfile(checkpoint_path):
+        subprocess.call(['tar', '-xzf', modeltar_path, '-C', modeldir_path])
 
     return checkpoint_path
 
