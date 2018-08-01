@@ -1,6 +1,10 @@
 TensorFlow/TensorRT Models on Jetson
 ====================================
 
+<p align="center">
+<img src="data/landing_graphic.jpg" alt="landing graphic" height="300px"/>
+</p>
+
 This repository contains scripts and documentation to use TensorFlow image classification and object detection models on NVIDIA Jetson.  The models are sourced from the [TensorFlow models repository](https://github.com/tensorflow/models)
 and optimized using TensorRT.
 
@@ -66,6 +70,10 @@ Setup
 <a name="ic"></a>
 Image Classification
 --------------------
+
+
+<img src="data/classification_graphic.jpg" alt="classification" height="300px"/>
+
 
 <a name="ic_models"></a>
 ### Models
@@ -157,6 +165,8 @@ with TensorRT as shown above.
 <a name="od"></a>
 Object Detection 
 ----------------
+
+<img src="data/detection_graphic.jpg" alt="detection" height="300px"/>
 
 <a name="od_models"></a>
 ### Models
