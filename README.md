@@ -71,6 +71,10 @@ Setup
 Image Classification
 --------------------
 
+
+<img src="data/classification_graphic.jpg" alt="classification" height="300px"/>
+
+
 <a name="ic_models"></a>
 ### Models
 
@@ -161,6 +165,8 @@ with TensorRT as shown above.
 <a name="od"></a>
 Object Detection 
 ----------------
+
+<img src="data/detection_graphic.jpg" alt="detection" height="300px"/>
 
 <a name="od_models"></a>
 ### Models
