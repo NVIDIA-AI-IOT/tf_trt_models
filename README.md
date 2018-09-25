@@ -38,13 +38,13 @@ Setup
 3. Install TensorFlow 1.7+ (with TensorRT support).  Download the [pre-built pip wheel](https://devtalk.nvidia.com/default/topic/1031300/jetson-tx2/tensorflow-1-8-wheel-with-jetpack-3-2-/) and install using pip.
 
     ```
-    sudo pip install tensorflow-1.8.0-cp27-cp27mu-linux_aarch64.whl
+    pip install tensorflow-1.8.0-cp27-cp27mu-linux_aarch64.whl --user
     ```
     
     or if you're using Python 3.
     
     ```
-    sudo pip3 install tensorflow-1.8.0-cp35-cp35m-linux_aarch64.whl
+    pip3 install tensorflow-1.8.0-cp35-cp35m-linux_aarch64.whl --user
     ```
 
     

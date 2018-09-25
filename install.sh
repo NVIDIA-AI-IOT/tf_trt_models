@@ -1,8 +1,7 @@
 #!/bin/bash
 
-ROOT_DIR=$PWD
-THIRD_PARTY_DIR=$ROOT_DIR/third_party
-MODELS_DIR=$THIRD_PARTY_DIR/models
+INSTALL_PROTOC=$PWD/scripts/install_protoc.sh
+MODELS_DIR=$PWD/third_party/models
 
 PYTHON=python
 
@@ -13,23 +12,27 @@ fi
 echo $PYTHON
 
 # install protoc
-(
-source scripts/install_protoc.sh
-)
+echo "Downloading protoc"
+source $INSTALL_PROTOC
+PROTOC=$PWD/data/protoc/bin/protoc
 
 # install tensorflow models
-(
 git submodule update --init
-cd $MODELS_DIR
-cd research
-protoc object_detection/protos/*.proto --python_out=.
-sudo $PYTHON setup.py install
-cd slim
-sudo $PYTHON setup.py install
-cd $ROOT_DIR
-)
 
-# install this project
-(
-sudo $PYTHON setup.py install
-)
+pushd $MODELS_DIR/research
+echo $PWD
+echo "Installing object detection library"
+echo $PROTOC
+$PROTOC object_detection/protos/*.proto --python_out=.
+$PYTHON setup.py install --user
+popd
+
+pushd $MODELS_DIR/research/slim
+echo $PWD
+echo "Installing slim library"
+$PYTHON setup.py install --user
+popd
+
+echo "Installing tf_trt_models"
+echo $PWD
+$PYTHON setup.py install --user
