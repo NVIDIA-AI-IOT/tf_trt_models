@@ -245,3 +245,12 @@ you should use an object detection
 config file during training that resembles one of the ssd_mobilenet_v1_coco or
 ssd_inception_v2_coco models.  Some config parameters may be modified, such as the number of
 classes, image size, non-max supression parameters, but the performance may vary.
+
+TODO
+----
+
+- [ ] update download_detection_model to download latest from tensorflow/models
+- [ ] add patches to download_detection_model to fix config version issue with mobilenet_v2 ssd model
+- [ ] add model re-export to build_detection_graph to resolve TF version discrepancies
+- [ ] add support for batch size > 1 to build_detection_graph
+- [ ] add support for NMS score threshold parameter to build_detection_graph
