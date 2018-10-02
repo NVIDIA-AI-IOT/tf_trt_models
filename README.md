@@ -201,11 +201,16 @@ config_path, checkpoint_path = download_detection_model('ssd_inception_v2_coco')
 ```
 To manually download the pretrained models, follow the links [here](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md).
 
+> **Important:** Some of the object detection configuration files have a very low non-maximum suppression score threshold (ie. 1e-8).
+> This can cause unnecessarily large CPU post-processing load.  Depending on your application, it may be advisable to raise 
+> this value to something larger (like 0.3) for improved performance.  We do this for the above benchmark timings.  This can be done by modifying the configuration
+> file directly before calling build_detection_graph.  The parameter can be found for example in this [line](https://github.com/tensorflow/models/blob/master/research/object_detection/samples/configs/ssd_mobilenet_v1_coco.config#L130).
+
 <a name="od_build"></a>
 ### Build TensorRT / Jetson compatible graph
 
 ```python
-from tf_trt_models.detection import 
+from tf_trt_models.detection import build_detection_graph
 
 frozen_graph, input_names, output_names = build_detection_graph(
     config=config_path,
