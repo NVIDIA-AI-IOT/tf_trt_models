@@ -249,8 +249,8 @@ classes, image size, non-max supression parameters, but the performance may vary
 TODO
 ----
 
-- [ ] update download_detection_model to download latest from tensorflow/models
-- [ ] add patches to download_detection_model to fix config version issue with mobilenet_v2 ssd model
-- [ ] add model re-export to build_detection_graph to resolve TF version discrepancies
-- [ ] add support for batch size > 1 to build_detection_graph
-- [ ] add support for NMS score threshold parameter to build_detection_graph
+- [x] update download_detection_model to download latest from tensorflow/models
+- [x] add patches to download_detection_model to fix config version issue with mobilenet_v2 ssd model
+- [x] add model re-export to build_detection_graph to resolve TF version discrepancies
+- [x] add support for batch size > 1 to build_detection_graph
+- [x] add support for NMS score threshold parameter to build_detection_graph
