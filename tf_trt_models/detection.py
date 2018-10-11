@@ -125,16 +125,23 @@ def build_detection_graph(config, checkpoint,
         if score_threshold is not None:
             config.model.faster_rcnn.second_stage_post_processing.score_threshold = score_threshold
 
+    if os.path.isdir(output_dir):
+        subprocess.call(['rm', '-rf', output_dir])
+
+    tf_config = tf.ConfigProto()
+    tf_config.gpu_options.allow_growth = True
+
     # export inference graph to file (initial)
-    with tf.Graph().as_default() as tf_graph:
-        exporter.export_inference_graph(
-            'image_tensor', 
-            config, 
-            checkpoint_path, 
-            output_dir, 
-            input_shape=[batch_size, None, None, 3],
-            write_inference_graph=False
-        )
+    with tf.Session(config=tf_config) as tf_sess:
+        with tf.Graph().as_default() as tf_graph:
+            exporter.export_inference_graph(
+                'image_tensor', 
+                config, 
+                checkpoint_path, 
+                output_dir, 
+                input_shape=[batch_size, None, None, 3],
+                write_inference_graph=False
+            )
 
     # read frozen graph from file
     frozen_graph = tf.GraphDef()
