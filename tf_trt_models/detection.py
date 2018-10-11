@@ -1,4 +1,5 @@
 from object_detection.protos import pipeline_pb2
+from object_detection.protos import image_resizer_pb2
 from object_detection import exporter
 
 import os
@@ -105,6 +106,7 @@ def build_detection_graph(config, checkpoint,
         force_nms_cpu=True,
         replace_relu6=True,
         remove_assert=True,
+        input_shape=None,
         output_dir='.generated_model'):
     """Builds a frozen graph for a pre-trained object detection model"""
     
@@ -121,9 +123,15 @@ def build_detection_graph(config, checkpoint,
         config.model.ssd.feature_extractor.override_base_feature_extractor_hyperparams = True
         if score_threshold is not None:
             config.model.ssd.post_processing.batch_non_max_suppression.score_threshold = score_threshold    
+        if input_shape is not None:
+            config.model.ssd.image_resizer.fixed_shape_resizer.height = input_shape[0]
+            config.model.ssd.image_resizer.fixed_shape_resizer.width = input_shape[1]
     elif config.model.HasField('faster_rcnn'):
         if score_threshold is not None:
             config.model.faster_rcnn.second_stage_post_processing.score_threshold = score_threshold
+        if input_shape is not None:
+            config.model.faster_rcnn.image_resizer.fixed_shape_resizer.height = input_shape[0]
+            config.model.faster_rcnn.image_resizer.fixed_shape_resizer.width = input_shape[1]
 
     if os.path.isdir(output_dir):
         subprocess.call(['rm', '-rf', output_dir])
