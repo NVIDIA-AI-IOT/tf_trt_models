@@ -147,8 +147,7 @@ def build_detection_graph(config, checkpoint,
                 config, 
                 checkpoint_path, 
                 output_dir, 
-                input_shape=[batch_size, None, None, 3],
-                write_inference_graph=False
+                input_shape=[batch_size, None, None, 3]
             )
 
     # read frozen graph from file
