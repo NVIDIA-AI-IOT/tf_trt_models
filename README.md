@@ -205,7 +205,7 @@ To manually download the pretrained models, follow the links [here](https://gith
 ### Build TensorRT / Jetson compatible graph
 
 ```python
-from tf_trt_models.detection import 
+from tf_trt_models.detection import build_detection_graph
 
 frozen_graph, input_names, output_names = build_detection_graph(
     config=config_path,
@@ -245,12 +245,3 @@ you should use an object detection
 config file during training that resembles one of the ssd_mobilenet_v1_coco or
 ssd_inception_v2_coco models.  Some config parameters may be modified, such as the number of
 classes, image size, non-max supression parameters, but the performance may vary.
-
-TODO
-----
-
-- [x] update download_detection_model to download latest from tensorflow/models
-- [x] add patches to download_detection_model to fix config version issue with mobilenet_v2 ssd model
-- [x] add model re-export to build_detection_graph to resolve TF version discrepancies
-- [x] add support for batch size > 1 to build_detection_graph
-- [x] add support for NMS score threshold parameter to build_detection_graph
