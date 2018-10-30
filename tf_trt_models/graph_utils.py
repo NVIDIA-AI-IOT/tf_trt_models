@@ -73,3 +73,19 @@ def remove_op(graph_def, op_name):
     matches = [node for node in graph_def.node if node.op == op_name]
     for match in matches:
         remove_node(graph_def, match)
+
+
+def force_nms_cpu(frozen_graph):
+    for node in frozen_graph.node:
+        if 'NonMaxSuppression' in node.name:
+            node.device = '/device:CPU:0'
+    return frozen_graph
+
+
+def replace_relu6(frozen_graph):
+    return convert_relu6(frozen_graph)
+
+
+def remove_assert(frozen_graph):
+    remove_op(frozen_graph, 'Assert')
+    return frozen_graph
